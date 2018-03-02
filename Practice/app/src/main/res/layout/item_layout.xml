@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="borrow"
+            type="com.example.practice.bean.BorrowBean"/>
+        <variable
+            name="adapter"
+            type="com.example.practice.view.MvvmActivity.BorrowAdapter"/>
+        <variable
+            name="position"
+            type="int"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@{borrow.title}"/>
+    </LinearLayout>
+</layout>

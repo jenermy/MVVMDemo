@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    //MVVM架构模式的数据绑定
+    dataBinding{
+        enabled = true
+    }
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.practice"
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions{
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.jcodecraeer:xrecyclerview:1.5.9'
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    //开始用的adapter-rxjava,报错：Caused by: java.lang.IllegalArgumentException: Unable to create call adapter for io.reactivex.Observable<com.example.practice.bean.BaseResponseBean>
+    //因为我用的rxjava2，所以改为adapter-rxjava2就可以了
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //开始我okhttp3用的版本是3.0.1，报错：java.lang.NoClassDefFoundError: Failed resolution of: Lokhttp3/internal/http/HttpEngine;
+    //后来okhttp3改版本为3.8.1就没错了
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+}
